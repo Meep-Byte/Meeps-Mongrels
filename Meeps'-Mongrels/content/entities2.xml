@@ -1,0 +1,55 @@
+<entities anm2root="gfx/" version="5">
+<!-- T-Bone -->
+<entity anm2path="enemies/Tbone/monster_tbone.anm2" baseHP="20" boss="0" champion="1" collisionDamage="2" collisionMass="30" collisionRadius="16" friction="0.7" id="124" variant="0" name="T-Bone" numGridCollisionPoints="12" shadowSize="24" stageHP="2" portrait="0">
+<bestiary transform="0,0,1" anim="Idle"/>
+<gibs amount="6" blood="0" bone="1" eye="0" gut="0" large="0"/>
+</entity>
+<!-- Clutchlet -->
+<entity anm2path="enemies/Clutchlet/monster_clutchlet.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="12" collisionRadius="10" friction="1" id="124" variant="1" name="Clutchlet" numGridCollisionPoints="12" shadowSize="15" stageHP="1" portrait="1">
+<bestiary transform="0,0,1" anim="Idle"/>
+<gibs amount="4" blood="2" bone="1" eye="0" gut="0" large="0"/>
+</entity>
+<!-- Clickety Cling -->
+<entity anm2path="enemies/Clickety Cling/monster_clicketycling.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="15" collisionRadius="10" friction="1" id="124" variant="2" name="Clickety Cling" numGridCollisionPoints="12" shadowSize="16" stageHP="2" portrait="2">
+<bestiary transform="0,0,1" anim="Bestiary"/>
+<gibs amount="6" blood="0" bone="1" eye="0" gut="0" large="0" chain = "1"/>
+</entity>
+<!-- Biggun -->
+<entity anm2path="enemies/Biggun/monster_biggun.anm2" baseHP="30" boss="0" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="10" friction="1" id="125" variant="0" name="Biggun" numGridCollisionPoints="12" shadowSize="24" stageHP="5" portrait="3">
+<bestiary transform="0,0,1" anim="Appear"/>
+<gibs amount="8" blood="1" bone="0" eye="1" gut="1" large="1" chain = "0"/>
+</entity>
+<!-- Ragged Hanger -->
+<entity anm2path="enemies/Ragged Hanger/monster_raggedhanger.anm2" baseHP="15" boss="0" champion="1" collisionDamage="1" collisionMass="6" collisionRadius="10" friction="1" id="126" variant="0" name="Ragged Hanger" numGridCollisionPoints="12" shadowSize="16" stageHP="3" portrait="4">
+<bestiary transform="0,0,1" anim="Bestiary"/>
+<gibs amount="4" blood="1" bone="1" eye="1" gut="1" large="0" chain = "0" worm = "1" />
+</entity>
+<!-- Ragged Gaper -->
+<entity anm2path="enemies/Ragged Gaper/monster_raggedgaper.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="8" collisionRadius="8" friction="1" id="127" variant="0" name="Ragged Gaper" numGridCollisionPoints="12" shadowSize="16" stageHP="5" portrait="5">
+<bestiary transform="0,0,1" anim="WalkVert" overlay = "Head"/>
+<gibs amount="4" blood="1" bone="1" eye="1" gut="1" large="0" chain = "0" worm = "0" />
+</entity>
+<!-- Ragged Gaper B -->
+<entity anm2path="enemies/Ragged Gaper/monster_raggedgaper_b.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="12" collisionRadius="10" friction="1" id="127" variant="1" name="Ragged Gaper B" numGridCollisionPoints="12" shadowSize="16" stageHP="6" portrait="8">
+<bestiary transform="0,0,1" anim="RunDown"/>
+<gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="1" chain = "0" worm = "0" />
+</entity>
+<!-- Ragged Horf -->
+<entity anm2path="enemies/Ragged Horf/monster_raggedhorf.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="9" collisionRadius="10" friction="1" id="128" variant="0" name="Ragged Horf" numGridCollisionPoints="12" shadowSize="20" stageHP="6" portrait="6">
+<bestiary transform="0,0,1" anim= "Attack"/>
+<gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" chain = "0" worm = "1" />
+</entity>
+<!-- Pallid Gusher -->
+<entity anm2path="enemies/Pallid Gusher/monster_pallidgusher.anm2" baseHP="10" boss="0" champion="1" collisionDamage="1" collisionMass="9" collisionRadius="10" friction="1" id="129" variant="0" name="Pallid Gusher" numGridCollisionPoints="12" shadowSize="16" stageHP="4" portrait="7">
+<bestiary transform="0,0,1" anim= "WalkVert" overlay = "blood"/>
+<gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" chain = "0" worm = "0" />
+</entity>
+<!-- Lokhust -->
+<entity anm2path="enemies/Lokhust/monster_lokhust.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="6" collisionRadius="8" friction="1" id="130" variant="0" name="Lokhust" numGridCollisionPoints="12" shadowSize="8" stageHP="4" portrait="9">
+<bestiary transform="0,0,1" anim= "Idle"/>
+<gibs amount="0" blood="1" bone="1" eye="1" gut="1" large="0" chain = "0" worm = "0" />
+</entity>
+
+
+
+</entities>

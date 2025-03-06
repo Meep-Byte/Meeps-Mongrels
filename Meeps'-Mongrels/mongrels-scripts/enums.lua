@@ -14,6 +14,7 @@ Meepsmongrels.enums = {
     RAGGED_GAPER = Isaac.GetEntityTypeByName("Ragged Gaper"),
     RAGGED_HORF = Isaac.GetEntityTypeByName("Ragged Horf"),
     PALLID_GUSHER = Isaac.GetEntityTypeByName("Pallid Gusher"),
-    LOKHUST = Isaac.GetEntityTypeByName("Lokhust")
+    LOKHUST = Isaac.GetEntityTypeByName("Lokhust"),
+    RAGAMUFFIN = Isaac.GetEntityTypeByName("Ragamuffin"),
     }
 }

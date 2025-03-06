@@ -6,7 +6,6 @@
 </entity>
 <!-- Clutchlet -->
 <entity anm2path="enemies/Clutchlet/monster_clutchlet.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="12" collisionRadius="10" friction="1" id="124" variant="1" name="Clutchlet" numGridCollisionPoints="12" shadowSize="15" stageHP="1" portrait="1">
-<bestiary transform="0,0,1" anim="Idle"/>
 <gibs amount="4" blood="2" bone="1" eye="0" gut="0" large="0"/>
 </entity>
 <!-- Clickety Cling -->
@@ -48,6 +47,11 @@
 <entity anm2path="enemies/Lokhust/monster_lokhust.anm2" baseHP="10" boss="0" champion="0" collisionDamage="1" collisionMass="6" collisionRadius="8" friction="1" id="130" variant="0" name="Lokhust" numGridCollisionPoints="12" shadowSize="8" stageHP="4" portrait="9">
 <bestiary transform="0,0,1" anim= "Idle"/>
 <gibs amount="0" blood="1" bone="1" eye="1" gut="1" large="0" chain = "0" worm = "0" />
+</entity>
+<!-- Ragamuffin -->
+<entity anm2path="enemies/Ragamuffin/monster_ragamuffin.anm2" baseHP="20" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="8" friction="1" id="131" variant="0" name="Ragamuffin" numGridCollisionPoints="12" shadowSize="12" stageHP="4" portrait="10">
+<bestiary transform="0,0,1" anim= "Idle"/>
+<gibs amount="9" blood="1" bone="1" eye="1" gut="1" large="0" chain = "0" worm = "1" />
 </entity>
 
 

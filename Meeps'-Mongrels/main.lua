@@ -14,6 +14,7 @@ local MeepsMongrelsScripts = {
 "raggedhorf",
 "pallidgusher",
 "lokhust",
+"ragamuffin",
 }
 for _, script in pairs(MeepsMongrelsScripts) do
     include("mongrels-scripts."..script)

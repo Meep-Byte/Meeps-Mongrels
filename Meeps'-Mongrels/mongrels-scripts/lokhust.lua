@@ -5,7 +5,7 @@ function Meepsmongrels:lokhustInit(lokhust)
 end
 Meepsmongrels:AddCallback(ModCallbacks.MC_POST_NPC_INIT, Meepsmongrels.lokhustInit, Meepsmongrels.enums.monsters.LOKHUST)
 function Meepsmongrels:lokhustBehavior(lokhust)
-    if not lokhust.State == NpcState.STATE_SPECIAL then
+    if lokhust.State ~= NpcState.STATE_SPECIAL then
         lokhust:PlaySound(SoundEffect.SOUND_INSECT_SWARM_LOOP, 1, 30, false, 1)
     end
     lokhust:GetData().damageCounter = 0
@@ -28,10 +28,9 @@ function Meepsmongrels:lokhustBehavior(lokhust)
         else
             lokhustSprite.FlipX = false
         end
-        if lokhust:IsFrame(10, 0) and math.random(1, 5) == 1 then
+        if lokhust.FrameCount >= 60 and lokhust:IsFrame(10, 0) and math.random(1, 5) == 1 then
              if room:GetGridCollisionAtPos(lokhust.Position) == GridCollisionClass.COLLISION_NONE and lokhust.Position:Distance(lokhustTarget.Position) <= 360 and room:CheckLine(lokhust.Position, lokhustTarget.Position, 3, 900, true, false) then
                 lokhust.State = NpcState.STATE_ATTACK
-                print("mung")
                 lokhustSprite:Play("Attack", true)
                 if Meepsmongrels:GenVector(lokhust, lokhustTarget, 1).X < 0  then
                     lokhustSprite.FlipX = true
@@ -45,7 +44,7 @@ function Meepsmongrels:lokhustBehavior(lokhust)
         lokhust.Velocity = Meepsmongrels:Lerp(lokhust.Velocity, Vector.Zero, 0.5)
         if lokhustSprite:IsFinished("Attack") then
             lokhust:GetData().Dirveloc = Meepsmongrels:GenVector(lokhust, lokhustTarget, 12)
-            lokhust.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NO_PITS
+            lokhust.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NOPITS
             lokhust.State = NpcState.STATE_SUICIDE
             lokhustSprite.FlipX = false
             lokhust:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK|EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
@@ -65,6 +64,7 @@ function Meepsmongrels:lokhustBehavior(lokhust)
     if lokhust.State == NpcState.STATE_SPECIAL then
         lokhust.Velocity = Vector.Zero
         lokhust.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+        lokhustSprite.Offset = Vector(0, -27)
         if lokhustSprite:IsFinished("Death") then
             lokhust:Remove()
             return

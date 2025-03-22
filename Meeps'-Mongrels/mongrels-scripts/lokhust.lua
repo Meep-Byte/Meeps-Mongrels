@@ -1,12 +1,15 @@
 
 function Meepsmongrels:lokhustInit(lokhust)
+    if lokhust.Variant == 0 then
     lokhust.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
     lokhust:GetData().damageCounter = 0
+    end
 end
 Meepsmongrels:AddCallback(ModCallbacks.MC_POST_NPC_INIT, Meepsmongrels.lokhustInit, Meepsmongrels.enums.monsters.LOKHUST)
 function Meepsmongrels:lokhustBehavior(lokhust)
+    if lokhust.Variant == 0 then
     if lokhust.State ~= NpcState.STATE_SPECIAL then
-        lokhust:PlaySound(SoundEffect.SOUND_INSECT_SWARM_LOOP, 1, 30, false, 1)
+        lokhust:PlaySound(Meepsmongrels.enums.sounds.BUG_SWARM, 1, 20, false, 1)
     end
     lokhust:GetData().damageCounter = 0
     local lokhustSprite = lokhust:GetSprite()
@@ -29,7 +32,7 @@ function Meepsmongrels:lokhustBehavior(lokhust)
             lokhustSprite.FlipX = false
         end
         if lokhust.FrameCount >= 60 and lokhust:IsFrame(10, 0) and math.random(1, 5) == 1 then
-             if room:GetGridCollisionAtPos(lokhust.Position) == GridCollisionClass.COLLISION_NONE and lokhust.Position:Distance(lokhustTarget.Position) <= 360 and room:CheckLine(lokhust.Position, lokhustTarget.Position, 3, 900, true, false) then
+             if room:GetGridCollisionAtPos(lokhust.Position) == GridCollisionClass.COLLISION_NONE and lokhust.Position:Distance(lokhustTarget.Position) <= 360 and Meepsmongrels:getNumAttackingLokhusts() < 2 and room:CheckLine(lokhust.Position, lokhustTarget.Position, 3, 900, true, false) then
                 lokhust.State = NpcState.STATE_ATTACK
                 lokhustSprite:Play("Attack", true)
                 if Meepsmongrels:GenVector(lokhust, lokhustTarget, 1).X < 0  then
@@ -76,14 +79,22 @@ function Meepsmongrels:lokhustBehavior(lokhust)
         end
     end
 end
+end
 Meepsmongrels:AddCallback(ModCallbacks.MC_NPC_UPDATE, Meepsmongrels.lokhustBehavior, Meepsmongrels.enums.monsters.LOKHUST)
 
 function Meepsmongrels:lokhustDeath(lokhust, amount)
+    if lokhust.Variant == 0 then
 local lokhust2 = lokhust:ToNPC()
 lokhust2:GetData().damageCounter = lokhust2:GetData().damageCounter + amount
 if (lokhust2.HitPoints - lokhust2:GetData().damageCounter <= 0 or lokhust2.State == NpcState.STATE_SPECIAL) and not lokhust2:HasEntityFlags(EntityFlag.FLAG_FREEZE | EntityFlag.FLAG_MIDAS_FREEZE) then
     lokhust2.State = NpcState.STATE_SPECIAL
     return false
+end
+end
+if lokhust.Variant == Meepsmongrels.enums.monsters.variants.LOKHOST then
+    if lokhust:GetData().IsImmune then
+        return false
+    end
 end
 end
 Meepsmongrels:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, Meepsmongrels.lokhustDeath, Meepsmongrels.enums.monsters.LOKHUST)

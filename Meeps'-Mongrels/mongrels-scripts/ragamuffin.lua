@@ -1,16 +1,9 @@
-local RAGAMUFFIN_SPEED = 5
-local  RAGAMUFFIN_DIRS = {
-    [1] = Vector (-1, -1):Resized(RAGAMUFFIN_SPEED),
-    [2] = Vector (1, -1):Resized(RAGAMUFFIN_SPEED),
-    [3] = Vector (1, 1):Resized(RAGAMUFFIN_SPEED),
-    [4] = Vector (-1, 1):Resized(RAGAMUFFIN_SPEED),
-}
+local RAGAMUFFIN_SPEED = 2.2
 
 function Meepsmongrels:ragamuffinInit(ragamuffin) -- adds sex to the dinding of shitsaac
     local EffectCol = Color(1,1,1,1, 0,0,0)
     EffectCol:SetColorize(0.84, 0.4, 0.68, 1)
     ragamuffin.SplatColor = EffectCol
-    ragamuffin:GetData().dir = 1
     ragamuffin.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS
     ragamuffin:AddEntityFlags(EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 end
@@ -59,11 +52,17 @@ function Meepsmongrels:ragamuffinBehavior(ragamuffin)
                 lokhust:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
                 lokhust:GetSprite():Play("Appear", true)
                 lokhust:GetSprite():SetFrame(8)
+                local dust = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.DUST_CLOUD, 0, ragamuffin.Position, Vector.Zero, nil):ToEffect()
+                dust.DepthOffset = 20
+                dust.SpriteOffset = Vector(0,- 14)
+                dust.SpriteScale = Vector(0.4, 0.4)
+                dust:SetTimeout(30)
             end
         else
             if ragamuffinSprite:IsFinished("SpewEnd") then
                 ragamuffin.State = NpcState.STATE_MOVE
                 ragamuffin.StateFrame = 0
+                return
             end
             if not ragamuffinSprite:IsPlaying("SpewEnd") then
                 ragamuffinSprite:Play("SpewEnd", true)
@@ -71,22 +70,7 @@ function Meepsmongrels:ragamuffinBehavior(ragamuffin)
         end
     end
     if ragamuffin.State ~= NpcState.STATE_INIT then
-            ragamuffin.Velocity = Meepsmongrels:Lerp(ragamuffin.Velocity, RAGAMUFFIN_DIRS[ragamuffin:GetData().dir], 0.3)
-            if ragamuffin:CollidesWithGrid() then
-                for i = 0, 3 do
-                    ragamuffin:GetData().dir = (ragamuffin:GetData().dir % 4) + 1
-                 if Meepsmongrels.enums.utils.game:GetRoom():GetGridCollisionAtPos(ragamuffin.Position + RAGAMUFFIN_DIRS[ragamuffin:GetData().dir]) < 4 then
-                    break
-                end
-            end
-        end
+        ragamuffin.Velocity =  Meepsmongrels:Lerp(ragamuffin.Velocity, ragamuffin.Velocity * 0.3 + Meepsmongrels:GetDiagonalMovementVect(ragamuffin, RAGAMUFFIN_SPEED), 0.2)
     end
 end
 Meepsmongrels:AddCallback(ModCallbacks.MC_NPC_UPDATE, Meepsmongrels.ragamuffinBehavior, Meepsmongrels.enums.monsters.RAGAMUFFIN)
-
-function Meepsmongrels:onColl(ragamuffin, coll)
-    if not coll:ToTear() and not coll:ToProjectile() and not coll.Type == Meepsmongrels.enums.monsters.LOKHUST then
-        ragamuffin:GetData().dir = (ragamuffin:GetData().dir % 4) + 1
-    end
-end
-Meepsmongrels:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, Meepsmongrels.onColl, Meepsmongrels.enums.monsters.RAGAMUFFIN)

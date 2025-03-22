@@ -16,5 +16,13 @@ Meepsmongrels.enums = {
     PALLID_GUSHER = Isaac.GetEntityTypeByName("Pallid Gusher"),
     LOKHUST = Isaac.GetEntityTypeByName("Lokhust"),
     RAGAMUFFIN = Isaac.GetEntityTypeByName("Ragamuffin"),
+    BIRDIE = Isaac.GetEntityTypeByName("Birdie"),
+    variants = {
+        LOKHOST = Isaac.GetEntityVariantByName("Lokhost"),
+    },
+    },
+
+    sounds = {
+        BUG_SWARM = Isaac.GetSoundIdByName("Bug Swarm")
     }
 }

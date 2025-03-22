@@ -61,3 +61,48 @@ function Meepsmongrels:GetTargJumpPos(pos, targpos, amount, limit) -- A function
        end
     end
 end
+
+function Meepsmongrels:getNumAttackingLokhusts()
+    local num = 0
+    local entityList = Isaac.FindByType(Meepsmongrels.enums.monsters.LOKHUST, 0, 0, false, false)
+    for _, enitity in pairs(entityList) do
+        if enitity.State == NpcState.STATE_SUICIDE or enitity.State == NpcState.STATE_ATTACK then
+            num = num + 1
+        end
+    end
+    return num
+end
+function Meepsmongrels:GetDiagonalMovementVect(entity, speed, xMult)
+    xMult = xMult or 1
+
+    local xvel = speed * xMult
+    local yvel = speed
+
+    if entity.Velocity.X < 0 then
+        xvel = xvel * -1
+    end
+
+    if entity.Velocity.Y < 0 then
+        yvel = yvel * -1
+    end
+
+    return Vector(xvel, yvel)
+end
+function Meepsmongrels:IsTargetAxisAligned(entity, target, margin) -- Checks whether two entities are aligned in the cardinal directions. Margin should be positive. Returns nil if not aligned.
+    local angleVec = Meepsmongrels:GenVector(entity, target, 1) 
+    if math.abs(entity.Position.X - target.Position.X) <= margin then
+        if angleVec.Y <= 0 then
+            return 1
+        else
+            return 3
+        end
+    end
+    if math.abs(entity.Position.Y - target.Position.Y) <= margin then
+        if angleVec.X >= 0 then
+            return 0
+        else
+            return 2
+        end
+    end
+    return nil
+end
